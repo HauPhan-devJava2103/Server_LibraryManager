@@ -14,4 +14,5 @@ public class BookSummaryResponse {
     private String title;
     private String author;
     private Integer publishedYear;
+    private Integer stock;
 }
