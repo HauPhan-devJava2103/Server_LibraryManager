@@ -15,6 +15,7 @@ public class ReaderDetailResponse {
     private String id;
     private String name;
     private String phone;
+    private String code;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

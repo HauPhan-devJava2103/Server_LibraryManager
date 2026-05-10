@@ -47,6 +47,9 @@ public class ReaderServiceImpl implements ReaderService {
         }
         Reader reader = readerMapper.toReader(request);
 
+        String generatedCode = String.valueOf(System.currentTimeMillis() % 1000000);
+        reader.setCode(generatedCode);
+
         reader = readerRepository.save(reader);
         return readerMapper.toReaderDetailResponse(reader);
     }

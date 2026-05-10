@@ -22,4 +22,7 @@ public class Reader extends AbstractEntity {
     @Column(name = "phone", nullable = false)
     private String phone;
 
+    @Column(name = "code", nullable = false)
+    private String code;
+
 }
