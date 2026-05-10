@@ -56,6 +56,7 @@ public class BookServiceImpl implements BookService {
         book.setAuthor(request.getAuthor());
         book.setPublishedYear(request.getPublishedYear());
         book.setDescription(request.getDescription());
+        book.setStock(request.getStock());
 
         book = bookRepository.save(book);
         return bookMapper.toBookDetailResponse(book);

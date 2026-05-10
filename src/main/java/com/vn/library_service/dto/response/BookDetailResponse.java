@@ -17,6 +17,7 @@ public class BookDetailResponse {
     private String author;
     private Integer publishedYear;
     private String description;
+    private Integer stock;
 
     private Date createdAt;
     private Date updatedAt;

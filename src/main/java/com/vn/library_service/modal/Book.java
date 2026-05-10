@@ -28,4 +28,7 @@ public class Book extends AbstractEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "stock")
+    private Integer stock;
+    
 }
