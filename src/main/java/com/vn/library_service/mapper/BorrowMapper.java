@@ -31,7 +31,7 @@ public interface BorrowMapper {
     @Mapping(source = "reader.phone", target = "readerPhone")
     @Mapping(source = "items", target = "totalBooks", qualifiedByName = "calcTotalBooks")
     @Mapping(source = "items", target = "nearestDueDate", qualifiedByName = "calcNearestDueDate")
-    @Mapping(source = "items", target = "items")
+    @Mapping(source = "items", target = "items", qualifiedByName = "filterActiveItems")
     BorrowDetailResponse toBorrowDetailResponse(Borrow borrow);
 
     @Mapping(source = "book.id", target = "bookId")
@@ -64,6 +64,17 @@ public interface BorrowMapper {
                 .min(Comparator.naturalOrder())
                 .orElse(null);
 
+    }
+
+    // 3. Loại bỏ RETURNED
+    @Named("filterActiveItems")
+    default List<BorrowItemResponse> filterActiveItems(List<BorrowItem> items) {
+        if (items == null)
+            return List.of();
+        return items.stream()
+                .filter(item -> item.getStatus() == EBorrow.BORROWING || item.getStatus() == EBorrow.OVERDUE)
+                .map(this::toBorrowItemResponse)
+                .toList();
     }
 
 }

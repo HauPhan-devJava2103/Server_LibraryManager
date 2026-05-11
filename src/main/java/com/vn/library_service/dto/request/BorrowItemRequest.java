@@ -6,6 +6,10 @@ import lombok.Data;
 
 @Data
 public class BorrowItemRequest {
+    // Dùng khi trả sách - xác định đúng BorrowItem record
+    // Optional: null khi tạo phiếu mượn, có giá trị khi trả sách
+    private String borrowItemId;
+
     @NotNull(message = "Book ID is required")
     private String bookId;
 

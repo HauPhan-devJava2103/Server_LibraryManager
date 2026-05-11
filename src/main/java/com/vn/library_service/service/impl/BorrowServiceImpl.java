@@ -2,8 +2,6 @@ package com.vn.library_service.service.impl;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -129,7 +127,12 @@ public class BorrowServiceImpl implements BorrowService {
 
         for (BorrowItemRequest req : request.getItems()) {
             BorrowItem item = borrow.getItems().stream()
-                    .filter(borrowItem -> borrowItem.getBook().getId().equals(req.getBookId()))
+                    .filter(borrowItem -> {
+                        if (req.getBorrowItemId() != null) {
+                            return borrowItem.getId().equals(req.getBorrowItemId());
+                        }
+                        return false;
+                    })
                     .findFirst()
                     .orElseThrow(() -> new ResourceNotFoundException(
                             "Không tìm thấy sách trong phiếu mượn: " + req.getBookId()));
