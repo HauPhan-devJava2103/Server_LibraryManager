@@ -8,4 +8,5 @@ import com.vn.library_service.modal.Reader;
 @Repository
 public interface ReaderRepository extends JpaRepository<Reader, String> {
     Boolean existsByPhone(String phone);
+
 }
